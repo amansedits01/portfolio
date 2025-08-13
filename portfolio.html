@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aman Singh Video Editing Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (for Instagram icon + others) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-somehash" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root{
+            --bg: #0b0b0d;
+            --card: #111114;
+            --accent1: #ff6a00; /* warm orange */
+            --accent2: #7b2ff7; /* purple */
+            --muted: #bfbfbf;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg,var(--bg) 0%, #050506 100%);
+            color:#fff;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.5;
+        }
+
+        /* NAV / HEADER */
+        header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+            padding:22px 40px;
+            background:linear-gradient(90deg, rgba(255,106,0,0.06), rgba(123,47,247,0.06));
+            position:sticky;
+            top:0;
+            z-index:50;
+            backdrop-filter: blur(6px);
+        }
+        .brand{
+            display:flex;
+            gap:14px;
+            align-items:center;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight:700;
+            font-size:20px;
+            letter-spacing:1px;
+            color:var(--accent1);
+        }
+        nav ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+            display:flex;
+            gap:18px;
+            align-items:center;
+        }
+        nav a{
+            color:#fff;
+            text-decoration:none;
+            font-weight:500;
+            opacity:0.9;
+            padding:6px 8px;
+            border-radius:6px;
+        }
+        nav a:hover{opacity:1; transform:translateY(-2px)}
+
+        /* Hero */
+        .hero{
+            display:grid;
+            grid-template-columns: 1fr 420px;
+            gap:30px;
+            align-items:center;
+            padding:70px 6vw;
+            min-height:60vh;
+        }
+        .hero-left h1{
+            font-family:'Montserrat',sans-serif;
+            font-size:48px;
+            margin:0 0 10px 0;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+        .hero-left p{max-width:720px; color:var(--muted); margin:12px 0 20px 0}
+        .cta{
+            display:inline-block;
+            padding:12px 20px;
+            border-radius:30px;
+            background:linear-gradient(90deg,var(--accent1),var(--accent2));
+            color:#000;
+            font-weight:600;
+            text-decoration:none;
+            box-shadow: 0 6px 18px rgba(123,47,247,0.18);
+        }
+
+        .hero-right{
+            display:flex;
+            justify-content:center;
+        }
+        .profile-circle{
+            width:320px;
+            height:320px;
+            border-radius:50%;
+            overflow:hidden;
+            border:10px solid rgba(255,255,255,0.06);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            background:linear-gradient(135deg, rgba(255,106,0,0.12), rgba(123,47,247,0.12));
+        }
+        .profile-circle img{width:100%; height:100%; object-fit:cover; display:block}
+
+        /* Sections */
+        section{padding:60px 6vw}
+        .section-title{
+            text-align:center;
+            margin-bottom:30px;
+            font-family:'Montserrat',sans-serif;
+            font-size:28px;
+            background:linear-gradient(90deg,var(--accent1),var(--accent2));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        /* Video Gallery */
+        .video-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap:22px;
+            align-items:start;
+        }
+        .video-card{
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid rgba(255,255,255,0.04);
+            padding:10px;
+            border-radius:14px;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .video-card:hover{ transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.6); }
+        .video-thumb{
+            position:relative;
+            border-radius:10px;
+            overflow:hidden;
+            background:#000;
+        }
+        .video-thumb video{
+            display:block;
+            width:100%;
+            height: 520px;
+            max-height:800vh;
+            object-fit:cover;
+            border-radius:10px;
+            outline: none;
+            background:#000;
+        }
+        .video-meta{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:10px 8px 0 8px;
+        }
+        .video-meta h4{ margin:0; font-size:16px; font-weight:600; color:#fff }
+        .video-meta .tag{ font-size:13px; color:var(--muted) }
+
+        /* Services */
+        .services-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap:18px;
+        }
+        .service-box{
+            background:linear-gradient(180deg, rgba(255,106,0,0.05), rgba(123,47,247,0.03));
+            border-radius:12px;
+            padding:18px;
+            text-align:center;
+            border:1px solid rgba(255,255,255,0.025);
+        }
+
+        /* Contact */
+        .contact-card{
+            max-width:900px;
+            margin:0 auto;
+            background:var(--card);
+            padding:28px;
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.03);
+        }
+        .contact-row{
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+        .contact-left{flex:1; min-width:220px}
+        .contact-right{flex:1.2; min-width:240px}
+        .socials{display:flex; gap:12px; margin-top:10px}
+        .socials a{
+            display:inline-flex;
+            width:44px;
+            height:44px;
+            border-radius:10px;
+            align-items:center;
+            justify-content:center;
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid rgba(255,255,255,0.04);
+            color:#fff;
+            text-decoration:none;
+            font-size:18px;
+        }
+
+        /* Floating social (bottom-right) */
+        .floating-social{
+            position:fixed;
+            right:18px;
+            bottom:18px;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            z-index:60;
+        }
+        .floating-social a{
+            width:54px; height:54px; border-radius:12px;
+            display:inline-flex; align-items:center; justify-content:center;
+            background:linear-gradient(90deg,var(--accent1),var(--accent2));
+            color:#000; font-weight:700; box-shadow: 0 10px 30px rgba(123,47,247,0.18);
+            text-decoration:none;
+        }
+
+        /* Footer */
+        footer{ padding:22px; text-align:center; color:var(--muted) }
+
+        /* Responsive tweaks */
+        @media (max-width:900px){
+            .hero{ grid-template-columns: 1fr; text-align:center }
+            .hero-right{ order:-1; margin-bottom:20px }
+            .hero-left h1{ font-size:36px }
+            .video-thumb video{ height:260px }
+        }
+
+
+
+
+
+        
+.counter-container {
+        margin-left: 380px;
+        display: flex;
+        gap: 60px;
+    }
+    .counter-box {
+        border: 1px solid #444;
+        border-radius: 8px;
+        padding: 20px 40px;
+        text-align: center;
+        background: rgba(255,255,255,0.02);
+        box-shadow: 0 0 20px rgba(255,255,0,0.1);
+    }
+    .counter {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #f5f500; /* Yellow */
+    }
+    .label {
+        font-size: 1rem;
+        color: white;
+        margin-top: 5px;
+    }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="logo">AMAN SINGH</div>
+            <div style="color:var(--muted); font-size:14px; margin-left:6px">Video Editor</div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#videos">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- Instagram icon in nav -->
+                <li><a href="https://www.instagram.com/amans_singh_01/" target="_blank" aria-label="Instagram" title="Instagram">
+                    <i class="fa-brands fa-instagram" style="color:linear-gradient(90deg,var(--accent1),var(--accent2));"></i>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-left">
+            <h1>Hi, I'm Aman — I craft visual stories</h1>
+            <p>Professional video editor and Graphics designer focused on Reels, Ads, and YouTube content. I use Wondershare Filmora and CapCut to bring ideas to life.</p>
+            <a class="cta" href="#contact">Hire Me</a>
+        </div>
+        <div class="hero-right">
+            <div class="profile-circle">
+                <!-- replace with your image -->
+                <img src="amanss.webp" alt="Aman Singh">
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS / PORTFOLIO -->
+    <section id="videos">
+        <div class="section-title">My Portfolio</div>
+
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <!-- poster attribute = thumbnail image -->
+                    <video controls preload="metadata" poster="media/thumbnails/fash.png" data-title="Fashion Reel Edit">
+                        <source src="media/videos/bcueidts.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Fashion Reel Edit</h4>
+                    <div class="tag">Reels • 9:16</div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="media/thumbnails/glowwell.png" data-title="Brand Promo">
+                        <source src="media/videos/Glow well.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Brand Promo</h4>
+                    <div class="tag">Ads • 9:16</div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="media/thumbnails/fashion.png" data-title="Travel Cinematic">
+                        <source src="media/videos/amansedits.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Bharat chikan brand</h4>
+                    <div class="tag">Short • 9:16</div>
+                </div>
+            </div>
+
+            <!-- Video 4 (landscape example) -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="media/thumbnails/travel.png" data-title="Event Highlight">
+                        <source src="media/videos/jibhi jalori tour.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Event Highlight</h4>
+                    <div class="tag">16:9 • Event</div>
+                </div>
+            </div>
+
+
+             <!-- Video 6 (landscape example) -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="media/thumbnails/shreeyog.png" data-title="Event Highlight">
+                        <source src="media/videos/shree yog brandings 15 august.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Brand Promotion</h4>
+                    <div class="tag">16:9 • Event</div>
+                </div>
+            </div>
+
+
+             <!-- Video 6 (landscape example) -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="travel.png" data-title="Event Highlight">
+                        <source src="jibhi jalori tour.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Event Highlight</h4>
+                    <div class="tag">16:9 • Event</div>
+                </div>
+            </div>
+
+
+
+             <!-- Video 6 (landscape example) -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="travel.png" data-title="Event Highlight">
+                        <source src="jibhi jalori tour.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>Event Highlight</h4>
+                    <div class="tag">16:9 • Event</div>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video controls preload="metadata" poster="thumbnails/youtube-vlog.jpg" data-title="YouTube Vlog">
+                        <source src="video5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-meta">
+                    <h4>YouTube Vlog Edit</h4>
+                    <div class="tag">Vlog • 16:9</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="section-title">Services</div>
+        <div class="services-grid">
+            <div class="service-box">Social Media Video Editing</div>
+            <div class="service-box">Ads & Product Promos</div>
+            <div class="service-box">Music Videos</div>
+            <div class="service-box">Event Coverage</div>
+        </div>
+    </section>
+
+
+
+<div class="counter-container">
+    <div class="counter-box">
+        <div class="counter" data-target="100">0</div>
+        <div class="label">Successful Projects</div>
+    </div>
+    <div class="counter-box">
+        <div class="counter" data-target="50">0</div>
+        <div class="label">Happy Clients</div>
+    </div>
+    
+    <div class="counter-box">
+        <div class="counter" data-target="10">0</div>
+        <div class="label">Winning Awards</div>
+    </div>
+</div>
+
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-title">Contact Me</div>
+        <div class="contact-card">
+            <div class="contact-row">
+                <div class="contact-left">
+                    <h3 style="margin:0 0 8px 0">Let's Collaborate</h3>
+                    <p style="color:var(--muted)">Email: <a href="mailto:yourname@example.com" style="color:inherit; text-decoration:underline;">singhaman01915@gmail.com</a></p>
+
+                    <!-- Instagram in contact -->
+                    <div style="margin-top:12px">
+                        <div style="font-weight:600; margin-bottom:6px">Follow me</div>
+                        <div class="socials">
+                            <a href="https://www.instagram.com/amans_singh_01/" target="_blank" title="Instagram" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="" target="_blank" title="Twitter" aria-label="Twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="#" title="Behance" aria-label="Behance">
+                                <i class="fa-brands fa-behance"></i>
+                            </a>
+                        </div>
+                        <div class="Phone" style="margin-top: 3px;"><i class="fa-solid fa-phone-volume"></i> 7007574698</div>
+                    </div>
+                </div>
+
+                <div class="contact-right">
+                    <form onsubmit="event.preventDefault(); alert('Thanks! I will contact you soon.');" style="display:flex; flex-direction:column; gap:10px;">
+                        <input type="text" placeholder="Your name" required style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#fff">
+                        <input type="email" placeholder="Email" required style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#fff">
+                        <textarea placeholder="Message" rows="4" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#fff"></textarea>
+                        <button type="submit" style="padding:12px 16px; border-radius:10px; border:none; cursor:pointer; background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#000; font-weight:700">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Instagram -->
+    <div class="floating-social">
+        <a href="https://www.instagram.com/amans_singh_01/" target="_blank" title="Instagram" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" style="font-size:20px;"></i>
+        </a>
+    </div>
+
+    <footer>
+        © 2025 Aman Singh • All Rights Reserved 
+    </footer>
+
+
+<script>
+    const counters = document.querySelectorAll('.counter');
+
+    counters.forEach(counter => {
+        counter.innerText = '0';
+
+        const updateCounter = () => {
+            const target = +counter.getAttribute('data-target');
+            const current = +counter.innerText.replace(/[^0-9]/g, '');
+            const increment = target / 200; // Speed control
+
+            if (current < target) {
+                counter.innerText = Math.ceil(current + increment).toLocaleString();
+                setTimeout(updateCounter, 10);
+            } else {
+                counter.innerText = target.toLocaleString() + '+'; // Add plus sign
+            }
+        };
+
+        updateCounter();
+    });
+</script>
+
+
+
+    <!-- JS: pause other videos when one plays -->
+    <script>
+        // pause-all-others behaviour
+        const vids = document.querySelectorAll("video");
+        vids.forEach(v => {
+            // when user clicks play (or programmatically play)
+            v.addEventListener("play", () => {
+                vids.forEach(other => {
+                    if (other !== v && !other.paused) {
+                        other.pause();
+                    }
+                });
+            });
+
+            // optional: when user clicks on poster area, play and pause others
+            // (browsers handle poster->play via native controls; this ensures pausing others)
+            v.addEventListener("click", (e) => {
+                // clicking on the video toggles play/pause by default; we only ensure others paused
+                vids.forEach(other => {
+                    if (other !== v && !other.paused) other.pause();
+                });
+            });
+        });
+
+        // accessibility: allow keyboard Space on focused video to pause others
+        vids.forEach(v => {
+            v.setAttribute('tabindex', '0');
+            v.addEventListener('keydown', (e) => {
+                if(e.code === 'Space'){
+                    vids.forEach(other => { if (other !== v && !other.paused) other.pause(); });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
